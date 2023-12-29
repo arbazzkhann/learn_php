@@ -18,4 +18,8 @@ echo "id is $id <br>";
 echo "money is $money <br>";
 echo "First Charactor is $firstLetter <br>";
 
+// PHP is Case Sensitive language
+// $first = "First";
+// echo "$firsT";
+
 ?>
