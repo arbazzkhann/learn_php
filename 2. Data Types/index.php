@@ -26,7 +26,7 @@ echo "$phone <br>";
 
 
 
-//val_dump function
+//var_dump function
 //it will give, what type of variable it is.
 echo var_dump($developer);
 echo "<br>";
