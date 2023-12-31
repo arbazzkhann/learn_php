@@ -8,14 +8,17 @@ function marksCalculate($marksArr) {
     foreach($marksArr as $value) {
         $sum += $value;
     }
-    return $sum;
+    return "$sum <br>";
 }
 
-// $random = [65, 78, 82, 90, 88, 72, 83];
-$random = [88, 92, 73, 98, 55, 67];
-$totalMarks = marksCalculate($random);
+$user1 = [65, 78, 82, 90, 72, 82];
+$user2 = [88, 92, 73, 98, 65, 67];
 
-echo $totalMarks;
+$userTotalMarks1 = marksCalculate($user1);
+$userTotalMarks2 = marksCalculate($user2);
+
+echo "your marks is $userTotalMarks1";
+echo "your marks is $userTotalMarks2";
 
 
 ?>
