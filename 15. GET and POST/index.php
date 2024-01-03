@@ -1,4 +1,10 @@
+<!-- 
+GET and POST are used for Data getting from form.
 
+with GET method data is visible in url.
+with POST method data doesn't visibile in url.
+
+ -->
 
 <!doctype html>
 <html lang="en">
