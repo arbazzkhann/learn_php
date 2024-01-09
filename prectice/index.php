@@ -16,6 +16,40 @@
         </div>
     </nav>
 
+    <!-- php -->
+    <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "arbazforprep";
+
+        $conn = mysqli_connect($servername, $username, $password, $database);
+
+        if(!$conn) {
+            die("Connection Failed ---> " . mysqli_connect_error());
+        }
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $fullName = $_REQUEST['fullName'];
+                $id = $_REQUEST["id"];
+                $email = $_REQUEST["email"];
+                $password = $_REQUEST["password"];
+                
+            $sql = "INSERT INTO `arbaz` (`name`, `id`, `email`, `password`) VALUES ('$fullName', '$id', '$email', '$password')";
+
+            $result = mysqli_query($conn, $sql);
+            
+                if($result == true) {
+                    echo    '<div class="alert alert-success" role="alert">
+                                Your entry was successfully entered :)
+                            </div>';
+                } else {
+                    echo    '<div class="alert alert-danger" role="alert">
+                                Error ! technical issue please try leter :(
+                            </div>';
+                }
+        }
+    ?>
 
     <!-- form -->
     <form action="index.php" method="post">
@@ -43,30 +77,7 @@
     </form>
 
 
-    <!-- php -->
-    <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "arbazforprep";
 
-        $conn = mysqli_connect($servername, $username, $password, $database);
-
-        if(!$conn) {
-            die("Connection Failed ---> " . mysqli_connect_error());
-        }
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $fullName = $_REQUEST['fullName'];
-            $id = $_REQUEST["id"];
-            $email = $_REQUEST["email"];
-            $password = $_REQUEST["password"];
-            
-        $sql = "INSERT INTO `arbaz` (`name`, `id`, `email`, `password`) VALUES ('$fullName', '$id', '$email', '$password')";
-
-        $result = mysqli_query($conn, $sql);
-        }
-    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
