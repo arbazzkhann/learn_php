@@ -22,7 +22,8 @@
         }
         else {
             if(($password == $confirmPassword)) {
-                $sql = "INSERT INTO `users` (`username`, `password`, `dt`) VALUES ('$username', '$password  ', current_timestamp())";
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO `users` (`username`, `password`, `dt`) VALUES ('$username', '$hash', current_timestamp())";
 
                 $result = mysqli_query($conn, $sql);
 
@@ -69,20 +70,21 @@
     <!-- container -->
     <div class="container my-4">
         <!-- heading -->
-        <h1 class="text-center">Signup to Our Website</h1>
+        <h1 class="text-center">Signup to Our Website Md. Farhan</h1>
         <!-- form -->
         <form action="1.signup.php" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username">
+                <input type="text" class="form-control" maxlength="11" id="username" name="username">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password">
+                <input type="password" maxlength="16" name="password" class="form-control" id="password">
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword">
+                <input type="password" maxlength="16" name="confirmPassword" class="form-control" id="confirmPassword">
+                <div id="emailHelp" class="form-text">Make sure that your confirm password must be same as password.</div>
             </div>
             <!-- <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">

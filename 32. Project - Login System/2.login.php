@@ -12,7 +12,7 @@
         $password = $_POST['password'];       //storing password
 
             
-            $sql = "(SELECT * FROM users WHERE username='$username' AND password='$password')";   //sql query
+            $sql = "(SELECT * FROM users WHERE username='$username')";   //sql query
             
             $result = mysqli_query($conn, $sql);    //running query
             
@@ -20,18 +20,26 @@
 
             // checking if number of rows = 1 or not
             if($num == 1) {
-                $login = 1;    //making default variable to true
-                session_start();  //starting session
-                $_SESSION['loggedin'] = true;   //applying session loggedin=true
-                $_SESSION['username'] = $username;   //applying session username=true
+                while($row = mysqli_fetch_assoc($result)) {
+                    if(password_verify($password, $row['password'])) {
+                        $login = 1;    //making default variable to true
+                        session_start();  //starting session
+                        $_SESSION['loggedin'] = true;   //applying session loggedin=true
+                        $_SESSION['username'] = $username;   //applying session username=true
 
-                header("location: ./3.welcome.php");  //directing to the welcome page
+                        header("location: ./3.welcome.php");  //directing to the welcome page
+                    }
+                    else {
+                        $showError = "Invalid Credentials";   //else showError value
+                        $login = 0;
+                    }
+                }
             }
-            else {
-                $showError = "Invalid Credentials";   //else showError value
-                $login = 0;
-            }
-           }
+                else {
+                    $showError = "Invalid Credentials";   //else showError value
+                    $login = 0;
+                }
+        }
 
 ?>
 
