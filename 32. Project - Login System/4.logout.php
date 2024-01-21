@@ -1,8 +1,9 @@
 <?php
+session_start();
 
-session_unset();                         //it will unset all things which are setted in session.
-session_destroy();                       //it will distroy the session.
+session_unset();
+session_destroy();
 
-echo "You are logged out.";
-
+header("location: ./2.login.php");
+exit;
 ?>

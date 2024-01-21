@@ -1,8 +1,9 @@
 <?php
-    $showAlert = null;
+    $showAlert = 2;
     $showError = false;
 
     if($_SERVER['REQUEST_METHOD'] == "POST") {
+
 
         include './partials/_dbConnect.php';  //database details
         $username = $_POST['username'];       //storing username
@@ -16,6 +17,7 @@
 
         //checking rows
         if($existsNumRows > 0) {
+            $showAlert = 0;
             $showError = "User already exists.";
         }
         else {
@@ -25,10 +27,11 @@
                 $result = mysqli_query($conn, $sql);
 
                 if($result) {
-                    $showAlert = true;
+                    $showAlert = 1;
                 }
             }
             else {
+                $showAlert = 0;
                 $showError = "Password do not matched.";  //error message
             }
         }
@@ -49,13 +52,13 @@
   <body>
     <?php require ('./partials/_navbar.php') ?>
     <?php 
-        if($showAlert) { //success message if $showAlert = true
+        if($showAlert == 1) { //success message if $showAlert = true
             echo    '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> Your account has been created. Now you can login into your account.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
         } 
-        else {
+        else if($showAlert == 0) {
             echo    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error! </strong>' . $showError . '
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

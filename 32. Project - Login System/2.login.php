@@ -1,8 +1,9 @@
 <?php
     // default false values variable
-    $login = false;
+    $login = 2;
     $showError = false;
-
+    
+    
     // checking server request is post
     if($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -19,7 +20,7 @@
 
             // checking if number of rows = 1 or not
             if($num == 1) {
-                $login = true;    //making default variable to true
+                $login = 1;    //making default variable to true
                 session_start();  //starting session
                 $_SESSION['loggedin'] = true;   //applying session loggedin=true
                 $_SESSION['username'] = $username;   //applying session username=true
@@ -27,11 +28,10 @@
                 header("location: ./3.welcome.php");  //directing to the welcome page
             }
             else {
-              $showError = "Invalid Credentials";   //else showError value
+                $showError = "Invalid Credentials";   //else showError value
+                $login = 0;
             }
            }
-
-    
 
 ?>
 
@@ -48,13 +48,13 @@
     <?php require ('./partials/_navbar.php') ?> <!-- navbar -->
     <?php 
         // cheacking login is true or not
-        if($login) { //success
+        if($login == 1) { //success
             echo    '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>Success!</strong> You are logged into your account.
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
         }
-        else {  //error
+        else if($login == 0){  //error
             echo    '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error!</strong> Can not logged in. ' . $showError . '
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

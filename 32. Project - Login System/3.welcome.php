@@ -22,18 +22,16 @@
   <body>
     <!-- navbar -->
     <?php require ('./partials/_navbar.php') ?>
-    <!-- showing success alert -->
-    <?php 
-    if($loggedin == true) {
-        echo  '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                  You are logged in ' . $_SESSION['username'] . '.
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>';
-      }
-      else {
-        
-      }
-    ?>
+  <div class="container my-4">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Wellcome - <?php echo $_SESSION['username'] ?></h4>
+      <p>Welcome to iSecure. You are logged in as <?php echo $_SESSION['username'] ?></p>
+      <hr>
+      <p class="mb-0">Whenever you need to logged out, be sure by using this <a href="./4.logout.php">link.</a></p>
+    </div>
+  </div>
+
+
 
   </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
