@@ -14,24 +14,45 @@
 </head>
 
 <body>
-    <?php include './partials/_header.php'?>
     <!--Header-->
+    <?php include './partials/_header.php'?>
+
+    <?php
+           $cat_id = $_GET['catid'];
+
+           // Corrected SQL query with backticks around table name
+           $sql = "SELECT * FROM `categories` WHERE category_id=$cat_id";
+           
+           $result = mysqli_query($conn, $sql);
+           
+           if (!$result) {
+               // Handle query execution error
+               echo "Error: " . mysqli_error($conn);
+           } else {
+               // Fetch data only if the query was successful
+               while($row = mysqli_fetch_assoc($result)) {
+                   $cat_name = $row['category_name'];
+                   $cat_desc = $row['category_description'];
+               }
+           }
+
+    ?>
 
 
-    <!-- slider start here -->
+
+    <!-- jumbotron -->
     <div class="container">
         <div class="jumbotron m-3">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-                featured content or information.</p>
+            <h1 class="display-4"><?php echo $cat_name?></h1>
+            <p class="lead"><?php echo $cat_desc?></p>
             <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
         </div>
-    </div>  
+    </div>
 
 
-    <!-- card container -->
+    <!-- Q & A Section -->
     <div class="container my-3 py-4">
         <h1>Browse Questions</h1>
         <div class="d-flex py-2">
