@@ -23,10 +23,10 @@
     <?php include './partials/_header.php'?>
 
     <?php
-           $cat_id = $_GET['catid'];
+           $thread_id = $_GET['threadid'];
 
            // Corrected SQL query with backticks around table name
-           $sql = "SELECT * FROM `categories` WHERE category_id=$cat_id";
+           $sql = "SELECT * FROM `threads` WHERE thread_id=$thread_id";
            
            $result = mysqli_query($conn, $sql);
            
@@ -36,8 +36,8 @@
            } else {
                // Fetch data only if the query was successful
                while($row = mysqli_fetch_assoc($result)) {
-                   $cat_name = $row['category_name'];
-                   $cat_desc = $row['category_description'];
+                   $thread_title = $row['thread_title'];
+                   $thread_desc = $row['thread_description'];
                }
            }
 
@@ -48,10 +48,11 @@
     <!-- jumbotron -->
     <div class="container">
         <div class="jumbotron m-3">
-            <h1 class="display-4"><?php echo $cat_name?></h1>
-            <p class="lead"><?php echo $cat_desc?></p>
+            <h1 class="display-4"><?php echo $thread_title?></h1>
+            <p class="lead"><?php echo $thread_desc?></p>
             <hr class="my-4">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a class="btn btn-primary mb-5 btn-lg" href="#" role="button">Learn more</a>
+            <p class="mb-0">Posted by: <b>Arbaz</b></p>
         </div>
     </div>
 
@@ -60,8 +61,8 @@
     <!-- Q & A Section -->
     <div id="ques" class="container my-3 py-4">
 
-    <h1>Browse Questions</h1>
-    <?php
+    <h1>Discussions</h1>
+    <!-- <?php
            $cat_id = $_GET['catid'];
 
            // Corrected SQL query with backticks around table name
@@ -84,14 +85,14 @@
                     <div class="media my-3">
                         <img src="./images/userdefault.png" width="40px" alt="...">
                     <div class="media-body">
-                        <h5 class="mt-0"><a href="threads.php?threadid='.$cat_id.'">'.$thread_title.'</a></h5>
+                        <h5 class="mt-0"><a href="threads.php">'.$thread_title.'</a></h5>
                         <p>'.$thread_cat_desc.'</p>
                     </div>
                     </div>';
                 }
             }   
 
-    ?>
+    ?> -->
 
         </div>
 
