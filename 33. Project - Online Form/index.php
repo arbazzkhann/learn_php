@@ -66,13 +66,13 @@
             $cat_id = $row['category_id'];
             $cat_name = $row['category_name'];          //holding all categories_name into variable
             $cat_desc = $row['category_description'];   //holding all categories_description into variable
-            $threadAddress = "http://localhost/arbaz/learn_php/33.%20Project%20-%20Online%20Form/threads.php";  //thread page address
+            $threadAddress = "http://localhost/arbaz/learn_php/33.%20Project%20-%20Online%20Form/threadlist.php";  //thread page address
             // card 
             echo '<div class="col-md-4">
                 <div class="card" style="width: 18rem;">
                   <img src="https://source.unsplash.com/500x400/?code,'. $cat_name .'" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="threads.php?catid='. $cat_id .'">'. $cat_name .'</a></h5>
+                    <h5 class="card-title"><a href="threadlist.php?catid='. $cat_id .'">'. $cat_name .'</a></h5>
                     <p class="card-text">'. substr($cat_desc, 0, 58) . '...</p>
                     <a href="threads.php?catid='. $cat_id .'" class="btn btn-primary">View Thread</a>
                   </div>

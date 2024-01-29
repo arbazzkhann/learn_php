@@ -46,29 +46,50 @@
             <h1 class="display-4"><?php echo $cat_name?></h1>
             <p class="lead"><?php echo $cat_desc?></p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
         </div>
     </div>
+    <div class="d-flex py-2">
+        <h1 class="text-center">Browse Questions</h1>
 
 
     <!-- Q & A Section -->
     <div class="container my-3 py-4">
-        <h1>Browse Questions</h1>
-        <div class="d-flex py-2">
-            <div class="flex-shrink-0">
-                <img src="./images/userdefault.png" width="40px" alt="...">
-            </div>
-            <div class="flex-grow-1 ms-3">
-                <h5>Question Title</h5>
-                This is some content from a media component. You can replace this with any content and adjust it as
-                needed.</p>
-            </div>
+    <?php
+           $cat_id = $_GET['catid'];
+
+           // Corrected SQL query with backticks around table name
+           $sql = "SELECT * FROM `threads` WHERE thread_category_id=$cat_id";
+           
+           $result = mysqli_query($conn, $sql);
+           
+           if (!$result) {
+               // Handle query execution error
+               echo "Error: " . mysqli_error($conn);
+           } else {
+               // Fetch data only if the query was successful
+               while($row = mysqli_fetch_assoc($result)) {
+                   $thread_title = $row['thread_title'];
+                   $thread_cat_desc = $row['thread_description'];
+
+
+
+            echo '
+                    <div class="flex-shrink-0">
+                        <img src="./images/userdefault.png" width="40px" alt="...">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>'.$thread_title.'</h5>
+                        <p>'.$thread_cat_desc.'</p>
+                        </div>';
+
+                }
+            }   
+
+    ?>
+
         </div>
-    </div>
-
-
-
+    </div>';
 
 
     <?php include './partials/_footer.php'?>
