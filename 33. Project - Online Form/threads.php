@@ -41,6 +41,24 @@
                }
            }
 
+           if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $comment_contant = $_POST['discussion_contant'];
+            $sql = "INSERT INTO `comments` (`comment_content`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment_contant', '$thread_id', '0', current_timestamp())";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                echo '  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> Your comment has been submitted.
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+            else if(!$result) {
+                echo '  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Please fill correct comment.
+                            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }
+
     ?>
 
 
@@ -57,19 +75,17 @@
     </div>
 
 
-    <!-- Discussion Form -->
+    <!-- POST COMMENT FORM -->
     <div class="container">
         <h1 class="mt-5">POST COMMENT</h1>
         <form action="<?php $_SERVER['REQUEST_URI']?>" method="post">
             <div class="mb-3">
                 <label for="discussionComment" class="form-label">Type your comment : </label>
-                <textarea rows="6" class="form-control" name="discussion_comment" id="discussionComment"></textarea>
+                <textarea rows="6" class="form-control" name="discussion_contant" id="discussionComment"></textarea>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
-
-
 
 
     <div id="ques" class="container my-3 py-4">
@@ -99,7 +115,7 @@
                     </div>';
 
                 }
-                 
+
             if($noResult) {
                 echo '
                     <div class="jumbotron jumbotron-fluid pl-4">
