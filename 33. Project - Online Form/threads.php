@@ -104,12 +104,14 @@
                while($row = mysqli_fetch_assoc($result)) {
                    $comment_id = $row['comment_id'];
                    $contant = $row['comment_content'];
+                   $comment_time = $row['comment_time'];
                    $noResult = false;
 
             echo '
                     <div class="media my-3">
-                        <img src="./images/userdefault.png" width="40px" alt="...">
+                    <img src="./images/userdefault.png" width="40px" alt="...">
                     <div class="media-body">
+                        <p class="my-0 font-weight-bold">Anonymous User at '. $comment_time .'</p>
                         <p>'.$contant.'</p>
                     </div>
                     </div>';

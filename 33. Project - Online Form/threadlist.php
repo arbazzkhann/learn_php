@@ -113,12 +113,14 @@
                while($row = mysqli_fetch_assoc($result)) {
                    $thread_title = $row['thread_title'];
                    $thread_cat_desc = $row['thread_description'];
+                   $time_stamp = $row['time_stamp'];
                    $noResult = false;
 
             echo '
                     <div class="media my-3">
                         <img src="./images/userdefault.png" width="40px" alt="...">
                     <div class="media-body">
+                        <p class="my-0 font-weight-bold">Anonymous User at '. $time_stamp .'</p>
                         <h5 class="mt-0"><a href="threads.php?threadid='.$cat_id.'">'.$thread_title.'</a></h5>
                         <p>'.$thread_cat_desc.'</p>
                     </div>

@@ -47,4 +47,12 @@ echo
 include '_loginModal.php';
 include '_signupModal.php';
 
+if(isset($_GET['signupsuccess']) == true) {
+    echo '  <div class="alert alert-success alert-dismissible fade show" role="alert my-0">
+                <strong>Signup successfull!</strong> Your account has been created and you can now login on iDicuss website.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+}
+
+
 ?>
