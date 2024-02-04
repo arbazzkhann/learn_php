@@ -58,7 +58,7 @@
         <h2 class="text-center">iDiscuss - Categories</h2>
         <div class="row">
 
-            <?php 
+        <?php 
           $sql = "SELECT * FROM categories";
           $result = mysqli_query($conn, $sql);
           while($row = mysqli_fetch_assoc($result)) {

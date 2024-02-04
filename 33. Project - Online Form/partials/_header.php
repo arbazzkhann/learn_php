@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(isset($_SESSION['loggedIn'])) {
+
+}
 
 
 echo 
@@ -53,6 +57,12 @@ if(isset($_GET['signupsuccess']) == true) {
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
 }
+// if(isset($_GET['loginsuccess']) == true) {
+//     echo '  <div class="alert alert-success alert-dismissible fade show" role="alert my-0">
+//                 <strong>Login successfull!</strong> You are now logged in 
+//                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+//             </div>';
+// }
 
 
 ?>
