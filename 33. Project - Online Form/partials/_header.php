@@ -1,11 +1,12 @@
 <?php
+
+$loggedIn = false;
 session_start();
 if(isset($_SESSION['loggedIn'])) {
-
+    $loggedIn = true;
 }
 
-
-echo 
+echo
         '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">iDiscuess</a>
@@ -37,16 +38,23 @@ echo
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                    <div class="mx-2">
-                        <button class="btn btn-outline-success m1-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                        <button class="btn btn-outline-success mx-2" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
-                    </div>
+                        <button class="btn btn-success" type="submit">Search</button>';
+                        if($loggedIn) {
+                            echo '
+                            <p class="text-white my-1 mx-2">'.$_SESSION['userEmail'].'</p>
+                            <button class="btn btn-success" type="submit">Logout</button>';
+                        }
+                        else {
+                            echo '<button class="btn btn-outline-success mx-2 " data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                                  <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>';
+                        }
+                    echo '</form>
                 </div>
             </div>
         </nav>
 ';
+
+
 
 include '_loginModal.php';
 include '_signupModal.php';
